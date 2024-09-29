@@ -39,7 +39,7 @@ const App = () => {
     dispatch(setSelectedCategory(selectedCategory));
     navigate(`?category=${selectedCategory}`);
     setSkip(0);
-    setAllFetched(false); // Reset load more state
+    setAllFetched(false);
   };
 
   // search
