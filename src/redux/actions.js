@@ -3,7 +3,7 @@ import axios from 'axios';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_CATEGORIES_SUCCESS = 'FETCH_CATEGORIES_SUCCESS';
 export const SET_SELECTED_CATEGORY = 'SET_SELECTED_CATEGORY';
-export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+export const SET_SEARCH = 'SET_SEARCH';
 
 export const fetchProducts = (category = '', search = '', skip = 0, limit = 10) => {
     return async (dispatch) => {
@@ -28,7 +28,7 @@ export const setSelectedCategory = (category) => ({
     payload: category,
 });
 
-export const setSearchTerm = (term) => ({
-    type: SET_SEARCH_TERM,
-    payload: term,
+export const setSearch = (search) => ({
+    type: SET_SEARCH,
+    payload: search,
 });

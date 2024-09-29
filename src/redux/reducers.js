@@ -1,4 +1,4 @@
-import { FETCH_PRODUCTS_SUCCESS, FETCH_CATEGORIES_SUCCESS, SET_SELECTED_CATEGORY, SET_SEARCH_TERM } from './actions';
+import { FETCH_PRODUCTS_SUCCESS, FETCH_CATEGORIES_SUCCESS, SET_SELECTED_CATEGORY, SET_SEARCH } from './actions';
 
 const initialProductState = {
     products: [],
@@ -13,7 +13,7 @@ export const productReducer = (state = initialProductState, action) => {
                 ...state,
                 products: [...state.products, ...action.payload],
             };
-        case SET_SEARCH_TERM:
+        case SET_SEARCH:
             return {
                 ...state,
                 search: action.payload,

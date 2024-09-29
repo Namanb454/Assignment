@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProducts, fetchCategories, setSelectedCategory, setSearchTerm } from './redux/actions';
+import { fetchProducts, fetchCategories, setSelectedCategory, setSearch } from './redux/actions';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const App = () => {
@@ -15,18 +15,18 @@ const App = () => {
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const category = searchParams.get('category') || '';
-  const searchTerm = searchParams.get('search') || '';
+  const search = searchParams.get('search') || '';
 
   // products
   useEffect(() => {
     setLoading(true);
-    dispatch(fetchProducts(category, searchTerm, skip)).then((res) => {
+    dispatch(fetchProducts(category, search, skip)).then((res) => {
       if (res && res.length < 10) {
         setAllFetched(true);
       }
       setLoading(false);
     });
-  }, [dispatch, category, searchTerm, skip]);
+  }, [dispatch, category, search, skip]);
 
   // categories
   useEffect(() => {
@@ -44,9 +44,9 @@ const App = () => {
 
   // search
   const handleSearchChange = (e) => {
-    const searchTerm = e.target.value;
-    dispatch(setSearchTerm(searchTerm));
-    navigate(`?search=${searchTerm}`);
+    const search = e.target.value;
+    dispatch(setSearch(search));
+    navigate(`?search=${search}`);
     setSkip(0);
     setAllFetched(false);
   };
@@ -64,7 +64,7 @@ const App = () => {
 
         <input
           type="text"
-          value={searchTerm}
+          value={search}
           onChange={handleSearchChange}
           placeholder="Search products..."
           className="mb-4 p-2 w-full border border-gray-300 rounded-md shadow-sm"
